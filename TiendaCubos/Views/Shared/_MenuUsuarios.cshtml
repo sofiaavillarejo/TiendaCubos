@@ -1,0 +1,33 @@
+﻿@using System.Security.Claims
+
+@if (!Context.User.Identity.IsAuthenticated)
+{
+    <li class="nav-item">
+        <a asp-controller="Cubos"
+           asp-action="Index"
+           class="nav-link">
+            Login
+        </a>
+    </li>
+}
+else
+{
+    <li class="nav-item">
+        <a asp-controller="Cubos"
+           asp-action="Index"
+           class="nav-link">
+            @* <img class="rounded-circle" style="width:25px;height:25px" *@
+            @*      src="~/images/@Context.User.FindFirst("FOTO").Value" /> *@
+            <img class="rounded-circle" style="width:25px;height:25px"
+                 src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/800px-User_icon_2.svg.png" />
+            Hola, @Context.User.FindFirst(ClaimTypes.Name)?.Value
+        </a>
+    </li>
+    <li class="nav-item">
+        <a asp-controller="Managed"
+           asp-action="Logout"
+           class="nav-link">
+            Cerrar sesión
+        </a>
+    </li>
+}

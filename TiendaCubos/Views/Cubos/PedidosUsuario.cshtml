@@ -1,0 +1,28 @@
+﻿@model List<Compra>
+
+<h1>Pedidos del Usuario</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Fecha del pedido</th>
+            <th>Título</th>
+            <th>Precio</th>
+            <th>PrecioFinal</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (Compra pedido in Model)
+        {
+            <tr>
+                <td>@pedido.Nombre @pedido.Nombre</td>
+                <td>@pedido.Precio</td>
+                <td>@pedido.FechaPedido</td>
+                <td>@pedido.Precio</td>
+                <td>@pedido.Cantidad</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,38 @@
+﻿@model List<Cubo>
+
+<h1>Carrito de la compra</h1>
+<h2>@ViewData["totalProd"]</h2>
+
+@if (Model != null && Model.Any())
+{
+    <a asp-controller="Cubos" asp-action="FinalizarCompra" class="btn btn-primary my-3">Finalizar compra</a>
+
+    <div class="row">
+        @foreach (Cubo c in Model)
+        {
+            List<int> carrito = Context.Session.GetObject<List<int>>("CARRITO");
+            int cantidad = carrito.Count(id => id == c.IdCubo);
+            <div class="col-4">
+                <a asp-controller="Cubos" asp-action="Details"
+                   asp-route-idcubo="@c.IdCubo"
+                   class="text-decoration-none">
+                    <div class="card">
+                        <img class="card-img-top" src="@c.Imagen" width="100px"/>
+                        <div class="card-body">
+                            <h5 class="card-title">@c.Modelo</h5>
+                            <p class="card-text text-dark">Cantidad: @cantidad</p>
+                            <a asp-controller="Cubos" asp-action="QuitarCubo"
+                               asp-route-idcubo="@c.IdCubo">
+                                Quitar del carrito
+                            </a>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        }
+    </div>
+}
+else
+{
+    <h2>No hay cubos en tu carrito</h2>
+}

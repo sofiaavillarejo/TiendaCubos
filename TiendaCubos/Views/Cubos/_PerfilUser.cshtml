@@ -1,0 +1,17 @@
+﻿@using System.Security.Claims
+﻿
+<div class="row">
+    <div class="col-5">
+        @* <img class="w-100" src="~/images/@Context.User.FindFirst("FOTO").Value" /> *@
+        <img class="w-100" src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/User_icon_2.svg/800px-User_icon_2.svg.png" />
+    </div>
+    <div class="col-7">
+        <h3>Nombre: @Context.User.FindFirst(ClaimTypes.Name)</h3>
+        <h3>Email: @Context.User.FindFirst(ClaimTypes.Email)</h3>
+        @* <a asp-controller="Libros" asp-action="PedidosUsuario" *@
+        @*    class="btn btn-primary mt-3 w-100"> *@
+        @*     Ver mis pedidos *@
+        @* </a> *@
+    </div>
+
+</div>
