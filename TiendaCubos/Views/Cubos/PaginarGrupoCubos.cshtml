@@ -1,0 +1,75 @@
+﻿@model IEnumerable<TiendaCubos.Models.Cubo>
+
+@{
+    int numPagina = (int)ViewData["NUMPAGINA"];
+    int numRegistros = (int)ViewData["NUMREGISTROS"];
+}
+
+<h1>Paginar Grupo Cubos</h1>
+
+<hr />
+<div>
+    <ul class="list-group list-group-horizontal" style="list-style: none;">
+        @for (int i = 1; i <= numRegistros; i += 2)
+        {
+            <li class="list-group-item">
+                <a asp-controller="Cubos" asp-action="PaginarGrupoCubos" asp-route-posicion="@i">Página @numPagina</a>
+            </li>
+            @* aumentamos el valor del numero de la pagina *@
+            numPagina += 1;
+        }
+    </ul>
+</div>
+<hr />
+<table class="table table-warning">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.IdCubo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Modelo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Marca)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Imagen)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Precio)
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.IdCubo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Modelo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Marca)
+                </td>
+                <td>
+                    <img src="@item.Imagen" width="100px" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Precio)
+                </td>
+                <td>
+                    <a asp-controller="Cubos" asp-action="ComprarCubo" asp-route-idcubo="@item.IdCubo">Añadir cubo al carrito</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

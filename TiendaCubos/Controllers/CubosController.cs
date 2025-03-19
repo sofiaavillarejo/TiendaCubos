@@ -101,5 +101,20 @@ namespace TiendaCubos.Controllers
         //        await this.repo.GetPedidosUsuarioAsync(idusuario);
         //    return View(vistaPedidos);
         //}
+
+        public async Task<IActionResult> PaginarGrupoCubos(int? posicion)
+        {
+            if (posicion == null)
+            {
+                posicion = 1;
+            }
+
+            int numPagina = 1;
+            int numRegistros = await this.repo.GetNumeroRegistrosVistaCubosAsync();
+            ViewData["NUMREGISTROS"] = numRegistros;
+            ViewData["NUMPAGINA"] = numPagina;
+            List<Cubo> cubos = await this.repo.GetGrupoCubosASync(posicion.Value);
+            return View(cubos);
+        }
     }
 }

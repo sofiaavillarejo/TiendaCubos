@@ -26,6 +26,9 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Cubos" asp-action="Cubos">Cubos</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Cubos" asp-action="PaginarGrupoCubos">Paginación Cubos</a>
+                        </li>
                         @await Component.InvokeAsync("BuscadorMarca")
                         <partial name="_MenuUsuarios" />
                     </ul>
